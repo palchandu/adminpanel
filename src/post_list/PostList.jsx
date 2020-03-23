@@ -9,11 +9,20 @@ class PostList extends Component{
         super(prop)
         this.state={
             post_list:[],
-            invalid:''
+            invalid:'',
+            success:'',
+            error:'',
         }
-        this.getPostLost();
     }
-
+    componentDidMount(){
+        this.getPostLost();
+        if(this.props.location.state!=undefined){
+        this.setState({success:this.props.location.state.success,error:this.props.location.state.error});
+        setTimeout(function(){
+            this.setState({success:undefined,error:undefined});
+        }.bind(this),3000)
+        }
+    }
     getPostLost(){
         Services.postList().then((response)=>{
             console.log(response);
@@ -30,9 +39,16 @@ class PostList extends Component{
     }
 
     render(){
+        
         return(
             <React.Fragment>
                 <div className="row posts">
+                {this.state.success!=undefined && <span className="success">
+                    {this.state.success}
+                    </span>}
+                {this.state.error!=undefined  && <span className="error">
+                    {this.state.error}
+                    </span>}
                     <div className="dol-sm-12 col-md-12 col-lg-12">
                         <h3>Post Lists</h3>
                         <ReactBootstrap.Table responsive>

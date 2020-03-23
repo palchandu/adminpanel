@@ -94,6 +94,31 @@ function updatePosts(data){
     })
 }
 
+function removeCategory(cateId){
+    return new Promise((resolve,reject)=>{
+        axios.get(config.api_path+'/v2/category/remove_category/'+cateId,{headers:headers}).then((response)=>{
+            resolve(response);
+        }).catch((error)=>{
+            reject(error)
+        })
+    })
+    
+}
+function updateCategory(category,catId){
+    return new Promise((resolve,reject)=>{
+        var payload={
+            "name":category,
+            "_id":catId
+        }
+        console.log('payload',payload);
+        axios.post(config.api_path+'/v2/category/update_category',payload,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+
 export default {
     login,
     categoryList,
@@ -102,5 +127,7 @@ export default {
     imageList,
     postList,
     singlePost,
-    updatePosts
+    updatePosts,
+    removeCategory,
+    updateCategory
 }

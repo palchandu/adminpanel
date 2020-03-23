@@ -33,7 +33,8 @@ class Posts extends Component{
             lgShow: false,
             show: false,
             image_url:'',
-            post_id:''
+            post_id:'',
+            redirect:false
         }
         
         this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
@@ -152,9 +153,9 @@ class Posts extends Component{
                 }else if(response.data.success==false){
                     this.setState({info:{error:response.data.message}});
                 }
-                return <Redirect to='/posts' />
+                this.setState({redirect:true});
             }).catch((error)=>{
-                //console.log(error);
+                console.log(error);
             })
         }else{
             Services.addPosts(data).then((response)=>{
@@ -163,9 +164,9 @@ class Posts extends Component{
                 }else if(response.data.success==false){
                     this.setState({info:{error:response.data.message}});
                 }
-                return <Redirect to='/posts' />
+                this.setState({redirect:true});
             }).catch((error)=>{
-                //console.log(error);
+                console.log(error);
             })
         }
       }
@@ -173,6 +174,9 @@ class Posts extends Component{
         const {post_data,info}=this.state;
         let smClose = () => this.setState({ smShow: false });
         let lgClose = () => this.setState({ lgShow: false });
+        if(this.state.redirect){
+            return <Redirect to={{pathname:'/posts_list',state:{success:info.success,error:info.error}}}/>
+        }
         return(
             
             <React.Fragment>
