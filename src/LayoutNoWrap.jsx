@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import Login from './Login'
+import Posts from './Posts'
 class LayoutNoWrap extends Component{
     render(){
         return(
@@ -9,6 +10,7 @@ class LayoutNoWrap extends Component{
                 <Router>
                     <Switch>
                         <Route exact path='/' component={Login}/>
+                        <Route exact path='/posts' component={Posts}/>
                         <Route component={NoMatch}/>
                     </Switch>
                 </Router>

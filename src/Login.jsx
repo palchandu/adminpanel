@@ -61,9 +61,10 @@ class Login extends Component{
           }
         if(this.state.email && this.state.password){
             Services.login(this.state.email,this.state.password).then((response)=>{
+                console.log(response);
                 if(response.data.success==true){
-                    sessionStorage.setItem('userData',JSON.stringify(response.data.data.token));
-                    sessionStorage.setItem('userId',JSON.stringify(response.data.data.uid));
+                    localStorage.setItem('userData',response.data.data.token);
+                    localStorage.setItem('userId',response.data.data.uid);
                     this.setState({redirectToReferrer: true});
                 }else if(response.data.success==false){
                     this.setState({invalid:response.data.message});
@@ -75,8 +76,9 @@ class Login extends Component{
 
     }
     render(){
+        console.log('LoginScreen');
         if (this.state.redirectToReferrer || sessionStorage.getItem('userData')){
-            return (<Layout/>)
+            return <Redirect to={{ pathname:'/dashboard',state:{login:true}}} />
             }
 
         const { username, password, submitted, loading, error,invalid } = this.state;

@@ -37,7 +37,20 @@ class PostList extends Component{
             console.log(error)
         })
     }
+/*Delete Post */
+deletePost(post_id){
+    Services.deletePost(post_id).then((response)=>{
+        if(response.data.success==true){
+            this.getPostLost();
+            this.setState({success:response.data.message});
+        }else if(response.data.success==false){
 
+            this.setState({invalid:response.data.message});
+        }
+    }).catch((error)=>{
+        console.log(error)
+    })
+}
     render(){
         
         return(
@@ -58,6 +71,7 @@ class PostList extends Component{
                                 <th>Comments</th>
                                 <th>Created Date</th>
                                 <th>Created By</th>
+                                <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,8 +80,9 @@ class PostList extends Component{
                                         <tr>
                                         <td><Link to={"/posts?title="+item.title}>{item.title}</Link></td>
                                         <td>{item.comments.length}</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
+                                        <td>{item.created}</td>
+                                        <td>{item.created_by}</td>
+                                        <td><button className="btn btn-danger btn-sm" onClick={()=>{ if(window.confirm('Are you sure you wish to delete this item?')) this.deletePost(item._id)}}>Delete</button></td>
                                         </tr>
                                     ))
                                 }

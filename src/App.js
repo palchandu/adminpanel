@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MainLayout from './MainLayout'
 function App() {
+  console.log('App Screen');
   return (
     <React.Fragment>
       <MainLayout />

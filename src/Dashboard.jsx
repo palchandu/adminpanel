@@ -1,16 +1,42 @@
 import React,{Component} from 'react';
-
+import {browserHistory} from "react-router";
+import Loader from "./Loader";
 class Dashboard extends Component{
-
+    constructor(props){
+        super(props)
+        
+    }
+    state = { loading: true };
+    sleep = milliseconds => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+      };
+    wait = async (milliseconds = 2000) => {
+        await this.sleep(milliseconds);
+        this.setState({
+          loading: false
+        });
+        console.log(this.props.location.state);
+        if(this.props.location.state!=null){
+            let kyes=this.props.location.state.login;
+            if(kyes){
+                window.location.href='/posts';
+            }
+        }
+      };
+    
+    componentDidMount(){
+        
+        this.wait(2000);
+    }
     render(){
+        if (this.state.loading) return <Loader />;
         return(
             <React.Fragment>
                 <div className="container-fluid">
                     <ol className="breadcrumb">
                     <li className="breadcrumb-item">
-                        <a href="#">Dashboard</a>
+                        <a href="/dashboard">Dashboard</a>
                     </li>
-                    <li className="breadcrumb-item active">Overview</li>
                     </ol>
                     <div className="row">
                     <div className="col-xl-3 col-sm-6 mb-3">

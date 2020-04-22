@@ -1,0 +1,13 @@
+.title_head{
+    text-align: center;
+    text-underline-offset: inherit;
+}
+.nav{
+    margin: 0px 15px;
+}
+.tab-content{
+    margin: 0px 18px
+}
+.tab-content>.active {
+    background: rgb(251, 253, 255);
+}

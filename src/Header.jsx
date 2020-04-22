@@ -1,16 +1,13 @@
 import React,{Component} from 'react';
 import {  Redirect } from "react-router-dom";
-class Header extends Component{
-    constructor(props){
-        super(props);
-        this.logout=this.logout.bind(this);
-    }
-    logout(e){
-        e.preventDefault();
-        sessionStorage.clear();
-        window.location.href = '/';
-    }
-    render(){
+function logout(e){
+    e.preventDefault();
+    localStorage.clear();
+    window.location.href = '/';
+}
+const Header =(props)=>{
+        console.log('Heder props',props.is_localstoage)
+        if(props.is_localstoage){
         return(
             <React.Fragment>
                 <nav className="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -41,14 +38,17 @@ class Header extends Component{
                     <a className="dropdown-item" href="#">Settings</a>
                     <a className="dropdown-item" href="#">Activity Log</a>
                     <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
+                    <a className="dropdown-item" href="#" onClick={(e)=>logout(e)}>Logout</a>
                     </div>
                 </li>
                 </ul>
                 </nav>
             </React.Fragment>
         )
-    }
+        }else{
+            return('')
+        }
 }
+
 
 export default Header;

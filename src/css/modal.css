@@ -1,0 +1,8 @@
+.modal-dialog{
+    max-width: 1200px;
+    margin: 1.75rem auto;
+}
+.modal-body{
+    height: 400px;
+    overflow-y: scroll;
+}

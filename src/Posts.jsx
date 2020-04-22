@@ -13,6 +13,7 @@ import { ButtonToolbar } from 'react-bootstrap';
 import queryString from 'query-string';
 //import MyLargeModal from './utility/modals';
 import { Redirect } from "react-router-dom";
+import Gallery from './utility/Gallery'
 class Posts extends Component{
     
     constructor(props,context){
@@ -20,7 +21,6 @@ class Posts extends Component{
         
         this.state={
             categories:[],
-            images_list:[],
             checkedItems: new Map(),
             post_data:'',
             postData:'',
@@ -32,7 +32,6 @@ class Posts extends Component{
             smShow: false,
             lgShow: false,
             show: false,
-            image_url:'',
             post_id:'',
             redirect:false
         }
@@ -40,7 +39,6 @@ class Posts extends Component{
         this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
         this.handleEditorChange=this.handleEditorChange.bind(this);
         this.titleHandle=this.titleHandle.bind(this);
-        this.copyUrl=this.copyUrl.bind(this);
         /*Modal */
         this.handleShow = this.handleShow.bind(this);
         this.handleHide = this.handleHide.bind(this);
@@ -89,15 +87,7 @@ class Posts extends Component{
             console.log(error)
         })
         this.setState({postData:''})
-        /*Image List */
-        Services.imageList().then((response)=>{
-            if(response.data.success==true){
-                this.setState({images_list:response.data.data});
-                console.log(this.state.images_list);
-            }
-        }).catch((error)=>{
-            console.log(error)
-        })
+
         let params = queryString.parse(this.props.location.search);
         if(params.title!=undefined && params.title!=''){
             this.getSinglePost(params.title);
@@ -125,12 +115,7 @@ class Posts extends Component{
        this.setState({post_data:value});
       }
 
-    copyUrl(e){
-        e.preventDefault();
-        const url=e.target.getAttribute('src');
-        this.setState({image_url:url});
-        this.handleHide();
-    }
+    
     submitPost(){
         const post_contetnt=this.state.post_data;
         const uid=Utility.userId();
@@ -183,15 +168,7 @@ class Posts extends Component{
                 <div className="row">
                 <div className="col-sm-12 col-md-9 col-lg-9">
                 <div className="modal_btn">
-                {/*<Button
-                bsStyle="primary"
-                onClick={() => this.setState({ lgShow: true })}
-                >
-                Launch large demo modal
-                </Button>*/}
-                <Button  onClick={this.handleShow}>
-                Gallery
-                </Button>
+                
                 </div>
                 
                 
@@ -205,7 +182,7 @@ class Posts extends Component{
                     <input onChange={this.titleHandle} name="post_title" type="text" className="form-control" placeholder="Post Title"  value={this.state.post_title}/>
                 </div>
                 
-                <div style={{"marginLeft": "20px","border": "1px solid"}}>{this.state.image_url}</div>
+                
                 <Trumbowyg
 					id='react-trumbowyg'
 					buttons={
@@ -247,31 +224,6 @@ class Posts extends Component{
                     <button style={{"marginLeft": "20px"}} disabled={!this.btnEnableDisble()}  onClick={()=>this.submitPost()} type="button" className="btn btn-primary pull-right">Post Publish</button>
                 </div>
                 {/*<MyLargeModal show={this.state.lgShow} onHide={lgClose} />*/}
-                <ButtonToolbar>
-                <Modal
-                show={this.state.show}
-                onHide={this.handleHide}
-                dialogClassName="custom-modal"
-                >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-lg">
-                    Galley
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {
-                        this.state.images_list.map(items =>(
-                            <a href="" key={items._id} style={{"padding": "10px 10px 10px 10px"}}><img  onClick={this.copyUrl} style={{"width":"120px","height":"120px","marginTop":"10px"}} src={items.imagePath}/></a>
-                        ))
-                    }
-                   
-                    
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick={this.handleHide}>Close</Button>
-                </Modal.Footer>
-                </Modal>
-                </ButtonToolbar>
 
                 </div>
             </React.Fragment>
