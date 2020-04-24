@@ -76,8 +76,8 @@ deletePost(post_id){
                             </thead>
                             <tbody>
                                 {
-                                    this.state.post_list.map((item=>
-                                        <tr>
+                                    this.state.post_list.map(((item,id)=>
+                                        <tr key={id}>
                                         <td><Link to={"/posts?title="+item.title}>{item.title}</Link></td>
                                         <td>{item.comments.length}</td>
                                         <td>{item.created}</td>

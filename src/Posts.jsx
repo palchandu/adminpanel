@@ -33,7 +33,8 @@ class Posts extends Component{
             lgShow: false,
             show: false,
             post_id:'',
-            redirect:false
+            redirect:false,
+            featured_image:''
         }
         
         this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
@@ -101,6 +102,11 @@ class Posts extends Component{
         this.setState({post_title:value});
         console.log(name);
     }
+    featuredImageHandle(e){
+        const name=e.target.name;
+        const value=e.target.value;
+        this.setState({featured_image:value});
+    }
     handleChangeCheckbox(e) {
         const item = e.target.name;
         const isChecked = e.target.checked;
@@ -128,8 +134,10 @@ class Posts extends Component{
             "title":this.state.post_title,
             "post_content":post_contetnt,
             "uid":uid,
-            "category":cats
+            "category":cats,
+            "featured_image":this.state.featured_image
         }
+        console.log('llllllll',data);
         if(this.state.post_id!=''){
             
             Services.updatePosts(data).then((response)=>{
@@ -179,9 +187,13 @@ class Posts extends Component{
                     {info.error}
                     </span>}
                 <div className="form-group" style={{"marginLeft": "20px"}}>
+                    <label htmlFor="post_title">Post Title</label>
                     <input onChange={this.titleHandle} name="post_title" type="text" className="form-control" placeholder="Post Title"  value={this.state.post_title}/>
                 </div>
-                
+                <div className="form-group" style={{"marginLeft": "20px"}}>
+                    <label htmlFor="featured_image">Featured Image</label>
+                    <input onChange={this.featuredImageHandle.bind(this)} name="featured_image" type="text" className="form-control" placeholder="Post Featured Image"  value={this.state.featured_image}/>
+                </div>
                 
                 <Trumbowyg
 					id='react-trumbowyg'

@@ -1,7 +1,7 @@
 import configFile from '../config/config';
 import axios, { post } from 'axios';
 function userId(){
-    return JSON.parse (sessionStorage.getItem('userId'));
+    return localStorage.getItem('userId');
 }
 
 function fileUpload(file){
