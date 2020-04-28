@@ -53,7 +53,7 @@ class ManageIntro extends Component{
     render(){
         return(
             <React.Fragment>
-                <form className="form" onSubmit={this.AddWorkIntro}>
+                <form className="form my_form" onSubmit={this.AddWorkIntro}>
                     <h5>Work Introduction Text</h5>
                     <div className="flex-container">
                         <div className="col-lg-10 flex-child">

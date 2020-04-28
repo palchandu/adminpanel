@@ -2,27 +2,27 @@ import React,{Component} from 'react';
 import Services from '../../../services/user.services';
 import swal from 'sweetalert';
 import {FormGroup, FormControl, FormLabel} from 'react-bootstrap';
-class ManageTitle extends Component{
+class ManageIntro extends Component{
     constructor(props,context){
         super(props,context);
         this.state={
-            portfolio_data_title:''
+            about_intro:''
         }
-        this.AddWorkTitle=this.AddWorkTitle.bind(this);
-        this.handleTitle=this.handleTitle.bind(this);
+        this.AddAboutIntro=this.AddAboutIntro.bind(this);
+        this.handleIntro=this.handleIntro.bind(this);
     }
-    handleTitle(e){
+    handleIntro(e){
         this.setState({[e.target.name]:e.target.value});
     }
-    AddWorkTitle(e){
+    AddAboutIntro(e){
       e.preventDefault();
       var data={
-        portfolio_data_title:this.state.portfolio_data_title
+        about_intro:this.state.about_intro
       }
-      this.saveTitle(data);
+      this.saveIntro(data);
     }
-    saveTitle(data){
-        Services.manageWorkTitle(data).then((response)=>{
+    saveIntro(data){
+        Services.manageAboutIntro(data).then((response)=>{
             console.log(response);
             if(response.data.success==true){
                 swal("Good job!", response.data.message, "success");
@@ -39,7 +39,7 @@ class ManageTitle extends Component{
         Services.getWebsiteInfo().then((response)=>{
             if(response.data.success==true){
                this.setState({
-                portfolio_data_title:response.data.data.work.portfolio_data_title
+                about_intro:response.data.data.about.about_intro
             });
             }
         }).catch((error)=>{
@@ -53,11 +53,11 @@ class ManageTitle extends Component{
     render(){
         return(
             <React.Fragment>
-                <form className="form my_form" onSubmit={this.AddWorkTitle}>
-                    <h5>Work Title</h5>
+                <form className="form my_form" onSubmit={this.AddAboutIntro}>
+                    <h5>About Introduction Text</h5>
                     <div className="flex-container">
                         <div className="col-lg-10 flex-child">
-                            <input type="text" name="portfolio_data_title"  className="form-control" value={this.state.portfolio_data_title} onChange={this.handleTitle} />
+                            <textarea  style={{height:'170px'}} type="text" name="about_intro"  className="form-control" value={this.state.about_intro} onChange={this.handleIntro} />
                         </div>
                         <div className="col-lg-2 flex-child">
                         <button type="submit" className="btn btn-primary">Save</button>
@@ -69,4 +69,4 @@ class ManageTitle extends Component{
     }
 }
 
-export default ManageTitle;
+export default ManageIntro;

@@ -209,6 +209,174 @@ function manageWorkDelete(data){
         })
     })
 }
+function manageEducationTitle(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_education_experience_title',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageEducationIntro(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_education_experience_intro',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+
+function manageEducationAdd(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_educations',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+
+function manageEducationDelete(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/delete_education',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+
+function manageExperienceAdd(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_experiences',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+
+function manageExperienceDelete(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/delete_experience',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+
+function manageServiceTitle(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_service_title',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageServiceIntro(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_service_intro',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+
+function manageServiceAdd(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_service_services',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageServiceDelete(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/delete_service',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageAboutTitle(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_about_title',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageAboutIntro(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_about_intro',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageAboutDetails(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_about_details',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageSkillAdd(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_about_skills',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageHomeTitle(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_home_title',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageCV(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_home_cv',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageBg(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_home_background',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function manageAnimated(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/mywebsite/manage_home_animated_text',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
 
 export default {
     login,
@@ -229,5 +397,23 @@ export default {
     manageWorkTitle,
     manageWorkIntro,
     manageWorkAdd,
-    manageWorkDelete
+    manageWorkDelete,
+    manageEducationTitle,
+    manageEducationIntro,
+    manageEducationAdd,
+    manageEducationDelete,
+    manageExperienceAdd,
+    manageExperienceDelete,
+    manageServiceTitle,
+    manageServiceIntro,
+    manageServiceAdd,
+    manageServiceDelete,
+    manageAboutTitle,
+    manageAboutIntro,
+    manageAboutDetails,
+    manageSkillAdd,
+    manageHomeTitle,
+    manageCV,
+    manageBg,
+    manageAnimated
 }

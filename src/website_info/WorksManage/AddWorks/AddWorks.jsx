@@ -120,7 +120,7 @@ class ManageAddWork extends Component{
             <React.Fragment>
                 <div className="container">
                     <div className="row">
-                        <form className="form" onSubmit={this.AddWorks}>
+                        <form className="form my_form" onSubmit={this.AddWorks}>
                         <h5>Add And Remove Work</h5>
                         <div className="container">
                             <div className="form-group">

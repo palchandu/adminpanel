@@ -2,27 +2,35 @@ import React,{Component} from 'react';
 import Services from '../../../services/user.services';
 import swal from 'sweetalert';
 import {FormGroup, FormControl, FormLabel} from 'react-bootstrap';
-class ManageTitle extends Component{
+import './style.css';
+import utility from '../../../utility/utility';
+class ManageCV extends Component{
     constructor(props,context){
         super(props,context);
         this.state={
-            portfolio_data_title:''
+            cv_url:'',
+            file:null
         }
-        this.AddWorkTitle=this.AddWorkTitle.bind(this);
-        this.handleTitle=this.handleTitle.bind(this);
+        this.AddCVFile=this.AddCVFile.bind(this);
+        this.uploadCV=this.uploadCV.bind(this);
     }
-    handleTitle(e){
-        this.setState({[e.target.name]:e.target.value});
+    uploadCV(e){
+        e.preventDefault();
+        var file=e.target.files[0];
+        utility.documentUpload(file).then((response)=>{
+            console.log(response.data);
+            this.setState({cv_url:response.data});
+          })
     }
-    AddWorkTitle(e){
+    AddCVFile(e){
       e.preventDefault();
       var data={
-        portfolio_data_title:this.state.portfolio_data_title
+        cv_url:this.state.cv_url
       }
-      this.saveTitle(data);
+      this.saveHeaderData(data);
     }
-    saveTitle(data){
-        Services.manageWorkTitle(data).then((response)=>{
+    saveHeaderData(data){
+        Services.manageCV(data).then((response)=>{
             console.log(response);
             if(response.data.success==true){
                 swal("Good job!", response.data.message, "success");
@@ -39,7 +47,7 @@ class ManageTitle extends Component{
         Services.getWebsiteInfo().then((response)=>{
             if(response.data.success==true){
                this.setState({
-                portfolio_data_title:response.data.data.work.portfolio_data_title
+                cv_url:response.data.data.home.cv_url
             });
             }
         }).catch((error)=>{
@@ -53,14 +61,16 @@ class ManageTitle extends Component{
     render(){
         return(
             <React.Fragment>
-                <form className="form my_form" onSubmit={this.AddWorkTitle}>
-                    <h5>Work Title</h5>
+                <form className="form" onSubmit={this.AddCVFile}>
+                    <h5>CV(Resumae)</h5>
                     <div className="flex-container">
                         <div className="col-lg-10 flex-child">
-                            <input type="text" name="portfolio_data_title"  className="form-control" value={this.state.portfolio_data_title} onChange={this.handleTitle} />
+                            <input type="text" name="logo_url" disabled className="form-control" value={this.state.cv_url} />
                         </div>
                         <div className="col-lg-2 flex-child">
-                        <button type="submit" className="btn btn-primary">Save</button>
+                        <input type="file" name="file" id="file" className="inputfile"  onChange={this.uploadCV} />
+                        <label className="btn btn-primary uplbtn" htmlFor="file">Upload</label>
+                        <button type="submit" className="btn btn-primary savebtn">Save</button>
                     </div>
                 </div>
             </form>
@@ -69,4 +79,4 @@ class ManageTitle extends Component{
     }
 }
 
-export default ManageTitle;
+export default ManageCV;

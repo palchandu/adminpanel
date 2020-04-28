@@ -4,9 +4,23 @@ import SocialIcons from './SocialIcons/SocialIcons';
 import ManageFooter from './ManageFooter/Footermanage';
 import ManageHeader from './ManageHeader/ManageHeadr';
 import ManageTitle from './WorksManage/WorksTitle/Title';
-import ManageIntro from './WorksManage/WorksIntro/Intro';
+import ManageIntro from './ManageServices/ManageServiceIntro/Intro';
 import ManageAddWork from './WorksManage/AddWorks/AddWorks';
-
+import ManageEduExpTitle from './ManageEducationExperience/ManageTitle/Title';
+import ManageEduExpIntro from './ManageEducationExperience/ManageIntro/Intro';
+import ManageAddEducation from './ManageEducationExperience/ManageEducation/ManageAddEducation';
+import ManageAddExperience from './ManageEducationExperience/ManageExperience/ManageAddExperience';
+import ManageServiceTitle from './ManageServices/ManageServiceTitle/Title';
+import ManageServiceIntro from './ManageServices/ManageServiceIntro/Intro';
+import ManageServiceAdd from './ManageServices/ManageAddService/manageAddService';
+import ManageAboutTitle from './ManageAbout/AboutTitle/Title';
+import ManageAboutIntro from './ManageAbout/AboutIntro/Intro';
+import ManageAboutDetails from './ManageAbout/ManageAboutDetail/AboutDetail';
+import ManageAddSkill from './ManageAbout/ManageSkills/ManageSkills';
+import ManageHomeTitle from './ManageHome/ManageTitle/Title';
+import ManageHomeCV from './ManageHome/ManageCV/ManageCV';
+import ManageHomeBg from './ManageHome/ManageBgImage/ManageBg';
+import ManageHomeAnimation from './ManageHome/ManageAnimatedText/ManageAnimated';
 class WebsiteInfoTab extends Component{
     constructor(props,context){
         super(props,context);
@@ -30,16 +44,27 @@ class WebsiteInfoTab extends Component{
             id="controlled-tab-example"
           >
             <Tab eventKey={1} title="Home">
-              Home
+              <ManageHomeTitle />
+              <ManageHomeCV />
+              <ManageHomeBg />
+              <ManageHomeAnimation />
             </Tab>
             <Tab eventKey={2} title="About">
-              About
+              <ManageAboutTitle />
+              <ManageAboutIntro />
+              <ManageAboutDetails />
+              <ManageAddSkill />
             </Tab>
             <Tab eventKey={3} title="Services">
-              Services
+              <ManageServiceTitle />
+              <ManageServiceIntro />
+              <ManageServiceAdd />
             </Tab>
             <Tab eventKey={4} title="Education And Experience">
-              Education And Experience
+             <ManageEduExpTitle />
+             <ManageEduExpIntro />
+             <ManageAddEducation />
+             <ManageAddExperience />
             </Tab>
             <Tab eventKey={5} title="Work">
               <ManageTitle/>

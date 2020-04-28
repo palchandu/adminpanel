@@ -2,27 +2,27 @@ import React,{Component} from 'react';
 import Services from '../../../services/user.services';
 import swal from 'sweetalert';
 import {FormGroup, FormControl, FormLabel} from 'react-bootstrap';
-class ManageTitle extends Component{
+class ManageBg extends Component{
     constructor(props,context){
         super(props,context);
         this.state={
-            portfolio_data_title:''
+            background_image:''
         }
-        this.AddWorkTitle=this.AddWorkTitle.bind(this);
-        this.handleTitle=this.handleTitle.bind(this);
+        this.AddHomeBg=this.AddHomeBg.bind(this);
+        this.handleBg=this.handleBg.bind(this);
     }
-    handleTitle(e){
+    handleBg(e){
         this.setState({[e.target.name]:e.target.value});
     }
-    AddWorkTitle(e){
+    AddHomeBg(e){
       e.preventDefault();
       var data={
-        portfolio_data_title:this.state.portfolio_data_title
+        background_image:this.state.background_image
       }
-      this.saveTitle(data);
+      this.saveBg(data);
     }
-    saveTitle(data){
-        Services.manageWorkTitle(data).then((response)=>{
+    saveBg(data){
+        Services.manageBg(data).then((response)=>{
             console.log(response);
             if(response.data.success==true){
                 swal("Good job!", response.data.message, "success");
@@ -39,7 +39,7 @@ class ManageTitle extends Component{
         Services.getWebsiteInfo().then((response)=>{
             if(response.data.success==true){
                this.setState({
-                portfolio_data_title:response.data.data.work.portfolio_data_title
+                background_image:response.data.data.home.background_image
             });
             }
         }).catch((error)=>{
@@ -53,11 +53,11 @@ class ManageTitle extends Component{
     render(){
         return(
             <React.Fragment>
-                <form className="form my_form" onSubmit={this.AddWorkTitle}>
-                    <h5>Work Title</h5>
+                <form className="form my_form" onSubmit={this.AddHomeBg}>
+                    <h5>Home background image</h5>
                     <div className="flex-container">
                         <div className="col-lg-10 flex-child">
-                            <input type="text" name="portfolio_data_title"  className="form-control" value={this.state.portfolio_data_title} onChange={this.handleTitle} />
+                            <input type="text" name="background_image"  className="form-control" value={this.state.background_image} onChange={this.handleBg} />
                         </div>
                         <div className="col-lg-2 flex-child">
                         <button type="submit" className="btn btn-primary">Save</button>
@@ -69,4 +69,4 @@ class ManageTitle extends Component{
     }
 }
 
-export default ManageTitle;
+export default ManageBg;
