@@ -71,7 +71,7 @@ class ManageAddSkills extends Component{
         })
     }
     componentDidMount(){
-        //this.webAllInfo();
+        this.webAllInfo();
     }
     render(){
         return(

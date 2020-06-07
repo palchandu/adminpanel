@@ -11,6 +11,7 @@ import Category from './Category'
 import Login from './Login'
 import WebsiteInfo from './website_info/websiteInfo';
 import Gallery from './ManageImages';
+import Enquiry from './ManageEnquiry/ManageEnquiry'
 class Layout extends Component{
     constructor(props){
         super(props)
@@ -44,6 +45,7 @@ class Layout extends Component{
                                     <Route path='/category' component={Category}/> 
                                     <Route exact path='/' component={Login}/>
                                     <Route  path='/website_info' component={WebsiteInfo} />
+                                    <Route  path='/enquiry' component={Enquiry} />
                                     <Route component={NoMatch}/> 
                                 </Switch>
                             </div>

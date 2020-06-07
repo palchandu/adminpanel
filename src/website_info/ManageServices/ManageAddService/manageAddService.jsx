@@ -85,7 +85,7 @@ deleteService(id){
 
                         <h5 className="my_form">About Service</h5>
                         <div className="form-group">
-                            <textarea type="text" className="form-control" placeholder="About Service" onChange={this.handleChange} name="about_service" defaultValue="" />
+                            <textarea maxLength="150" minLength="150" type="text" className="form-control" placeholder="About Service" onChange={this.handleChange} name="about_service" defaultValue="" />
                         </div>
                         <div className="form-group my_form">
                             <button type="submit" className="btn btn-primary">Add Service</button>

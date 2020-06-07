@@ -377,6 +377,24 @@ function manageAnimated(data){
         })
     })
 }
+function addContactsInfo(data){
+    return new Promise((resolve,reject)=>{
+        axios.post(config.api_path+'/v2/contact/add_contacts',data,{headers:headers}).then(function(response){
+           resolve(response);
+        }).catch(function(error){
+            reject(error)
+        })
+    })
+}
+function getContactsInfo(){
+    return new Promise((resolve,reject)=>{
+        axios.get(config.api_path+'/v2/contact/get_contacts_details',{headers:headers}).then((response)=>{
+            resolve(response);
+        }).catch((error)=>{
+            reject(error)
+        })
+    })
+}
 
 export default {
     login,
@@ -415,5 +433,7 @@ export default {
     manageHomeTitle,
     manageCV,
     manageBg,
-    manageAnimated
+    manageAnimated,
+    addContactsInfo,
+    getContactsInfo
 }

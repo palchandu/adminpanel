@@ -35,6 +35,11 @@ const Sidebar=(props)=>{
                     </NavLink>
                 </li>
                 <li  className="nav-item ">
+                    <NavLink  className="nav-link" to="/enquiry" id="pagesDropdown" role="button">
+                    <span>Enquiry</span>
+                    </NavLink>
+                </li>
+                <li  className="nav-item ">
                     <NavLink  className="nav-link" to="/website_info" id="pagesDropdown" role="button">
                     <span>Website Info</span>
                     </NavLink>

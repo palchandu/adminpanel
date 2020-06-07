@@ -21,6 +21,7 @@ import ManageHomeTitle from './ManageHome/ManageTitle/Title';
 import ManageHomeCV from './ManageHome/ManageCV/ManageCV';
 import ManageHomeBg from './ManageHome/ManageBgImage/ManageBg';
 import ManageHomeAnimation from './ManageHome/ManageAnimatedText/ManageAnimated';
+import ManageContact from './ManageContacts/ManageContact';
 class WebsiteInfoTab extends Component{
     constructor(props,context){
         super(props,context);
@@ -79,6 +80,9 @@ class WebsiteInfoTab extends Component{
             </Tab>
             <Tab eventKey={8} title="Social Icons">
             <SocialIcons/>
+            </Tab>
+            <Tab eventKey={9} title="Contact Details">
+            <ManageContact/>
             </Tab>
           </Tabs>
         );

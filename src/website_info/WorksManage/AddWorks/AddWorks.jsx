@@ -10,6 +10,7 @@ class ManageAddWork extends Component{
             bg_image:'',
             project_name:'',
             project_url:'',
+            project_description:'',
             slide_image:[{image_url:null}],
             workslist:[],
             work_id:'',
@@ -44,12 +45,16 @@ class ManageAddWork extends Component{
     handleProjectURLChange = evt => {
         this.setState({ project_url: evt.target.value });
     };
+    handleProjectDescChange = evt => {
+        this.setState({ project_description: evt.target.value });
+    };
     AddWorks=e=>{
         e.preventDefault();
         var data={works_set:{
             bg_image:this.state.bg_image,
             project_name:this.state.project_name,
             project_url:this.state.project_url,
+            project_description:this.state.project_description,
             slide_image:this.state.slide_image,
         },
         work_id:this.state.work_id
@@ -134,6 +139,11 @@ class ManageAddWork extends Component{
                             <div className="form-group">
                                 <label>Project URL</label>
                                 <input type="text" onChange={this.handleProjectURLChange} name="project_url" className="form-control" placeholder="Project URL" defaultValue={this.state.project_url} />
+                            </div>
+                            <div className="form-group">
+                                <label>Project Descriptions</label>
+                                <textarea maxLength="200" minLength="150" rows="7" onChange={this.handleProjectDescChange} name="project_description" className="form-control" placeholder="Project Description" defaultValue={this.state.project_description} />
+                                
                             </div>
                             <div className="form-group">
                                 <h4>Project Slide Images</h4>
