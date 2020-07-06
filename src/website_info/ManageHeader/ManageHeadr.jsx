@@ -12,9 +12,9 @@ class ManageHeader extends Component{
             file:null
         }
         this.AddHeader=this.AddHeader.bind(this);
-        this.uploadLogo=this.uploadLogo.bind(this);
+        this.uploadWebsiteLogo=this.uploadWebsiteLogo.bind(this);
     }
-    uploadLogo(e){
+    uploadWebsiteLogo(e){
         e.preventDefault();
         var file=e.target.files[0];
         utility.fileUpload(file).then((response)=>{
@@ -27,6 +27,7 @@ class ManageHeader extends Component{
       var data={
         website_logo:this.state.website_logo
       }
+      console.log('==========',data)
       this.saveHeaderData(data);
     }
     saveHeaderData(data){
@@ -68,8 +69,8 @@ class ManageHeader extends Component{
                             <input type="text" name="logo_url" disabled className="form-control" value={this.state.website_logo} />
                         </div>
                         <div className="col-lg-2 flex-child">
-                        <input type="file" name="file" id="file" className="inputfile" accept="image/*" onChange={this.uploadLogo} />
-                        <label className="btn btn-primary uplbtn" htmlFor="file">Upload</label>
+                        <input type="file" name="file1" id="file1" className="inputfile" accept="image/*" onChange={this.uploadWebsiteLogo} />
+                        <label className="btn btn-primary uplbtn" htmlFor="file1">Upload Logo</label>
                         <button type="submit" className="btn btn-primary savebtn">Save</button>
                     </div>
                 </div>
